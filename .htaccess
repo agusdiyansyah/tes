@@ -1,0 +1,5 @@
+RewriteEngine On
+DirectoryIndex qapuas/qapuas.php
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ qapuas/qapuas.php?url=$1 [L,QSA]
