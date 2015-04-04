@@ -3,7 +3,7 @@
 	/**
 	CONTROLLER
 	*/
-	class Controller
+	class Controller extends App
 	{
 
 		public function __construct()
@@ -13,33 +13,55 @@
 
 		public function model($model)
 		{
-			$url = explode('/', $model);
+			$url 	= explode('/', $model);
+
+			$module = $this->module;
+			$model 	= $url[0];
 
 			if (isset($url[1])) {
+				
+				$module = $url[0];
+				$model 	= $url[1];
 
-				$model = $url[1];
+			}
 
-				require_once APP . $url[0] . '/model/' . $url[1] . '.php';
-				return new $url[1];
+			if (file_exists(APP . $module . '/model/' . $model . '.php')) {
+				
+				require_once APP . $module . '/model/' . $model . '.php';
+				return new $model;
 
 			} else {
-				echo "GX KETEMU MODELNYA";
+
+				echo "GX KEETEMU MODEL NYA";
+
 			}
 
 		}
 
-		public function view( $view , $data )
+		public function view( $view , $data = [] )
 		{
-			$url = explode('/', $view);
+			$url 	= explode('/', $view);
+			$module = $this->module;
+			$view 	= $url[0];
+			
+			extract($data);
+			unset($data);
 
 			if (isset($url[1])) {
-
-				$view = $url[1];
-
-				require_once APP . $url[0] . '/view/' . $url[1] . '.php';
 				
+				$module = $url[0];
+				$view 	= $url[1];
+
+			}
+
+			if (file_exists(APP . $module . '/view/' . $view . '.php')) {
+				
+				require_once APP . $module . '/view/' . $view . '.php';
+
 			} else {
-				echo "GX KETEMU VIEWNYA";
+
+				echo "GX KEETEMU VIEW NYA";
+
 			}
 
 		}

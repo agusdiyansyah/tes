@@ -7,9 +7,11 @@
 	{
 		public function index($a = '')
 		{
-			$data = $this->model('hello/M_HELLO')->data();
-			var_dump($data);
-			$this->view('hello/v_hello', $data);
+
+			$a = $this->model('m_hello')->data();
+			$help = $this->model('help/m_help');
+			$this->view('v_hello', $a);
+
 		}
 	}
 ?>
