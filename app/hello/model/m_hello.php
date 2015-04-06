@@ -3,11 +3,15 @@
 	* 
 	Model
 	*/
-	class M_hello
+	class M_hello extends Model
 	{
 		public function data()
 		{
-			return $data = array('nama' => 'agus Diyansyah', 'nim' => '3201216006' );;
+			return $this->db_get('kategori');
+		}
+		public function coba()
+		{
+			// $sql->coba();
 		}
 	}
 ?>

@@ -44,7 +44,14 @@
 			$module = $this->module;
 			$view 	= $url[0];
 			
-			extract($data);
+			if (is_array($data)) {
+				(object) $data;
+				extract($data);
+				echo "array";
+			}elseif (is_object($data)) {
+				extract((array) $data);
+				echo "object";
+			}
 			unset($data);
 
 			if (isset($url[1])) {
@@ -87,5 +94,22 @@
 			$params = $url ? array_values($url) : [];
 
 			call_user_func_array([$controller, $method], $params);
+		}
+
+		// convert array to Object
+		public function obj( $array ) {
+		    if (is_array($array)) {
+
+				foreach ($array as $Key => $Value){
+
+					if (is_array($Value)){
+						$array[$Key] = (object) $this->obj($Value);
+					}
+
+				}
+			}
+
+			return (object) $array;
+
 		}
 	}
