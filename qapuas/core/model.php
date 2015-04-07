@@ -20,9 +20,31 @@ class Model extends Db_class
 
     public function db_get($table)
     {
-        $result = mysqli_query($this->kon, 'select * from kategori');
-        $res = mysqli_fetch_object($result);
-        return $res;
+        $query = mysqli_query($this->kon, 'select * from kategori');
+        $res = [];
+        while ($data   = mysqli_fetch_assoc($query)) {
+            
+            array_push($res, $data);
+
+        }
+        return $this->obj($res);
         mysqli_close($this->kon);
     }
+
+    // convert array to Object
+        public function obj( $array ) {
+            if (is_array($array)) {
+
+                foreach ($array as $Key => $Value){
+
+                    if (is_array($Value)){
+                        $array[$Key] = (object) $this->obj($Value);
+                    }
+
+                }
+            }
+
+            return (object) $array;
+
+        }
 }

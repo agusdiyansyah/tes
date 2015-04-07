@@ -7,7 +7,8 @@
 	{
 		public function index($a = '')
 		{
-			$a = $this->model('m_hello')->data();
+			$a['res'] = $this->model('m_hello')->data();
+			
 			var_dump($a);
 			$this->view('v_hello',$a);
 		}

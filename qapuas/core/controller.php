@@ -38,20 +38,25 @@
 
 		}
 
-		public function view( $view , $data = [] )
+		public function view( $view , $data )
 		{
 			$url 	= explode('/', $view);
 			$module = $this->module;
 			$view 	= $url[0];
 			
 			if (is_array($data)) {
+
 				(object) $data;
 				extract($data);
-				echo "array";
+				// echo "array";
+
 			}elseif (is_object($data)) {
+
 				extract((array) $data);
-				echo "object";
+				// echo "object";
+
 			}
+			
 			unset($data);
 
 			if (isset($url[1])) {
@@ -96,20 +101,5 @@
 			call_user_func_array([$controller, $method], $params);
 		}
 
-		// convert array to Object
-		public function obj( $array ) {
-		    if (is_array($array)) {
-
-				foreach ($array as $Key => $Value){
-
-					if (is_array($Value)){
-						$array[$Key] = (object) $this->obj($Value);
-					}
-
-				}
-			}
-
-			return (object) $array;
-
-		}
+		
 	}
