@@ -8,10 +8,10 @@
 	class App
 	{
 		
-		protected $module = 'hello';
-		protected $controller = 'hello';
-		protected $method = 'index';
-		protected $params = [];
+		protected $module 		= 'hello';
+		protected $controller 	= 'hello';
+		protected $method 		= 'index';
+		protected $params 		= [];
 
 		function __construct()
 		{

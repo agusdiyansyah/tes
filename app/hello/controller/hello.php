@@ -3,15 +3,26 @@
 	* 
 	Hello
 	*/
-	class Hello extends Controller
+	class Hello extends Loader
 	{
-		public function index($a = '')
+
+		var $m_hello;
+
+		function __construct() {
+			$this->m_hello = $this->model('m_hello');
+		}
+
+		public function index()
 		{
-			$a = $this->model('m_hello')->data();
+			$cat = $this->m_hello->data();
+			var_dump($cat);
+			$this->fun('sds');
+			// echo $this->m_hello->kategori;
 			// $a['data'] = array('nama' => 'agus diyansyah', );
-			echo $a->kategori;
-			var_dump($a);
-			$this->view('v_hello',$a);
+			// $this->lib('coba');
+			// echo $a->kategori;
+			// var_dump($a);
+			$this->view('v_hello', $cat);
 		}
 
 		
