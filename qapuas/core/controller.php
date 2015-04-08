@@ -11,6 +11,12 @@
 
 		}
 
+
+
+		/**
+		MODEL
+		*/
+
 		public function model($model)
 		{
 			$url 	= explode('/', $model);
@@ -38,26 +44,23 @@
 
 		}
 
-		public function view( $view , $data )
+
+
+		/**
+		VIEW
+		*/
+
+		public function view( $view , $vars )
 		{
 			$url 	= explode('/', $view);
 			$module = $this->module;
 			$view 	= $url[0];
 			
-			if (is_array($data)) {
-
-				(object) $data;
-				extract($data);
-				// echo "array";
-
-			}elseif (is_object($data)) {
-
-				extract((array) $data);
-				// echo "object";
-
-			}
+			// pengolahan var data
 			
-			unset($data);
+			var_dump($this->obj($vars));
+			extract((array) $this->obj($vars));
+			unset($vars);
 
 			if (isset($url[1])) {
 				
@@ -77,6 +80,12 @@
 			}
 
 		}
+
+
+
+		/**
+		MODULE
+		*/
 
 		public function module($module)
 		{
@@ -100,6 +109,27 @@
 
 			call_user_func_array([$controller, $method], $params);
 		}
+
+
+		/**
+		CONVERT ARRAY TO OBJECT
+		*/
+
+		public function obj( $array ) {
+            if (is_array($array)) {
+
+                foreach ($array as $Key => $Value){
+
+                    if (is_array($Value)){
+                        $array[$Key] = (object) $this->obj($Value);
+                    }
+
+                }
+            }
+
+            return (object) $array;
+
+        }
 
 		
 	}
