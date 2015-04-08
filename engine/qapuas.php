@@ -6,5 +6,6 @@
 	define('LIB', 'library/');
 	define('FUN', 'functions/');
 	
-	require_once 'core/init.php';
+	require_once CORE . 'init.php';
+
 	$app = new App;

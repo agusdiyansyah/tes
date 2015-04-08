@@ -4,7 +4,6 @@
 	* 
 	Aplication Core
 	*/
-
 	class App
 	{
 		
@@ -15,6 +14,7 @@
 
 		function __construct()
 		{
+			
 			$url = $this->router();
 
 			// cek module pada directori app

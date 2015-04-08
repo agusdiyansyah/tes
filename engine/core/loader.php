@@ -75,12 +75,12 @@
 
 				} else {
 
-					echo "404 view  .__.";
+					echo "<b><i>404 view&nbsp&nbsp.__.&nbsp&nbsp</i></b>";
 
 				}
 			} elseif ($view = '') {
 				
-				echo "404 view  .__.";
+				echo "<b><i>404 view&nbsp&nbsp.__.&nbsp&nbsp</i></b>";
 
 			}
 
@@ -118,7 +118,7 @@
 
 			} else {
 
-				echo "404 Module  .__.";
+				echo "<b><i>404 Module&nbsp&nbsp.__.&nbsp&nbsp</i></b>";
 
 			}
 		}
@@ -138,11 +138,11 @@
 					return new $lib;
 
 				} else {
-					echo "404 Library  .__.";
+					echo "<b><i>404 Library&nbsp&nbsp.__.&nbsp&nbsp</i></b>";
 				}
 
 			} else {
-				echo "404 Library  .__.";
+				echo "<b><i>404 Library&nbsp&nbsp.__.&nbsp&nbsp</i></b>";
 			}
 		}
 
@@ -155,11 +155,11 @@
 		{
 			if ( $fun != '' ) {
 				
-				echo "Under Construction .__.";
+				echo "<b><i>Under Construction&nbsp&nbsp.__.&nbsp&nbsp</i></b>";
 
 			} else {
 
-				echo "404 Function  .__.";
+				echo "<b><i>404 Function&nbsp&nbsp.__.&nbsp&nbsp</i></b>";
 
 			}
 		}

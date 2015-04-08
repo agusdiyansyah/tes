@@ -4,18 +4,18 @@
 * 
 MODEL
 */
-class Model extends Db_class
+class Model
 {
+    protected $HOSTNAME    = 'localhost' ;
+    protected $USERNAME    = 'root' ;
+    protected $PW          = '' ;
+    protected $DB          = 'portal' ;
     protected $kon;
 
     public function __construct()
     {
 
-        // config file
-
-        require_once CONFIG.'db_conf.php';
-
-        $this->kon = $this->db_connect($HOSTNAME, $USERNAME, $PW, $DB);      
+        $this->kon = mysqli_connect($this->HOSTNAME , $this->USERNAME , $this->PW , $this->DB);      
 
     }
 
@@ -35,7 +35,7 @@ class Model extends Db_class
                 array_push($res, $data);
 
             }
-            return $this->obj($res);;
+            return $this->obj($res);
             mysqli_close($this->kon);
 
         } else {
@@ -48,8 +48,6 @@ class Model extends Db_class
 
     /**
     GET ROW
-    untuk mengirim result row
-
     */
 
     public function get_row($table = '')
