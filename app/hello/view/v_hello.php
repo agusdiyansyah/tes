@@ -1,3 +1,5 @@
 <?php  
-	echo $kategori;
+	foreach ($a as $key) {
+		echo $key['kategori'] . '<br>';
+	}
 ?>

@@ -5,17 +5,13 @@
 	*/
 	class Loader extends App
 	{
-		static $loader;
-		public $c = 1;
 
 		public function __construct()
 		{
-			if (empty(self::$loader)) {
-				self::$loader = $this;
-			}
-			echo $this->c;
-			$this->c++;
+
 		}
+
+
 
 		/**
 		MODEL
@@ -23,8 +19,10 @@
 
 		public function model($model)
 		{
-
 			$url 	= explode('/', $model);
+
+			$module = $this->module;
+			$model 	= $url[0];
 
 			if (isset($url[1])) {
 				
@@ -40,7 +38,7 @@
 
 			} else {
 
-				echo "<b><i>404 Model&nbsp&nbsp.__.&nbsp&nbsp</i></b>";
+				echo "GX KEETEMU MODEL NYA";
 
 			}
 
@@ -55,18 +53,21 @@
 		public function view( $view = '' , $vars = [] )
 		{
 			
-			if (!empty($view) && isset($vars) ) {
-				$url 	= explode('/', $view, 2);
+			if ( $view != '' && isset($vars) ) {
+				$url 	= explode('/', $view);
 				$module = $this->module;
 				$view 	= $url[0];
 				
 				// pengolahan var data
-				extract($vars);
+				extract((array) $this->obj($vars));
 				unset($vars);
 
-				$module = $url[0];
-				$view 	= $url[1];
+				if (isset($url[1])) {
+					
+					$module = $url[0];
+					$view 	= $url[1];
 
+				}
 
 				if (file_exists(APP . $module . '/view/' . $view . '.php')) {
 					
@@ -74,12 +75,12 @@
 
 				} else {
 
-					echo "<b><i>404 View&nbsp&nbsp.__.&nbsp&nbsp</i></b>";
+					echo "<b><i>404 view&nbsp&nbsp.__.&nbsp&nbsp</i></b>";
 
 				}
 			} elseif ($view = '') {
 				
-				echo "<b><i>404 View&nbsp&nbsp.__.&nbsp&nbsp</i></b>";
+				echo "<b><i>404 view&nbsp&nbsp.__.&nbsp&nbsp</i></b>";
 
 			}
 
@@ -97,54 +98,23 @@
 				
 				$url = explode('/', $module);
 
-				$segment = 0;
+				$method = 'index';
 
-				if (isset($url[$segment])) {
-					if (file_exists(APP . $url[$segment])) {
-
-						$this->module = $url[$segment];
-						unset($url[$segment]);
-
-						$segment++;
-
-					}
-				}
-
-				if (empty($this->controller)) {
-					$this->controller = $this->module;
-				}
-
-				if (isset($url[$segment])) {
+				if (isset($url[1])) {
 					
-					if (file_exists(APP . $this->module . '/controller/' . $url[$segment] . '.php')) {
-
-						$this->controller = $url[$segment];
-						unset($url[$segment]);
-
-						$segment++;
-
-					}
+					$method = $url[1];
+					unset($url[1]);
 
 				}
+				
+				require_once APP . $url[0] . '/controller/' . $url[0] . '.php';
 
-				require_once APP . $this->module . '/controller/' . $this->controller . '.php';
+				$controller = new $url[0];
+				unset($url[0]);
 
-				$this->controller = new $this->controller;
+				$params = $url ? array_values($url) : [];
 
-				if (isset($url[$segment])) {
-					
-					if (method_exists($this->controller, $url[$segment])) {
-						
-						$this->method = $url[$segment];
-						unset($url[$segment]);
-
-					}
-
-				}
-
-				$this->params = $url ? array_values($url) : [];
-
-				call_user_func_array([$this->controller, $this->method], $this->params);
+				call_user_func_array([$controller, $method], $params);
 
 			} else {
 
@@ -193,5 +163,27 @@
 
 			}
 		}
+
+
+		/**
+		CONVERT ARRAY TO OBJECT
+		*/
+
+		public function obj( $array ) {
+            if (is_array($array)) {
+
+                foreach ($array as $Key => $Value){
+
+                    if (is_array($Value)){
+                        $array[$Key] = (object) $this->obj($Value);
+                    }
+
+                }
+            }
+
+            return (object) $array;
+
+        }
+
 		
 	}

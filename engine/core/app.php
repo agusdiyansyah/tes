@@ -6,30 +6,42 @@
 	*/
 	class App
 	{
+		static $qapuas;
 		
-		protected $module 		= 'hello';
-		protected $controller 	= 'hello';
-		protected $method 		= 'index';
-		protected $params 		= [];
+		public $module		= "beranda";
+		public $controller	= "";
+		public $method		= "index";
+		public $params 		= [];
+
+		public $host 		= "localhost";
+		public $username 	= "root";
+		public $password	= "";
+		public $db 			= "portal";
+		public $charset		= "utf8";
+		public $port 		= NULL;
 
 		function __construct()
 		{
-			
-			$url = $this->router();
 
+			$url = $this->router();
 			// cek module pada directori app
 
-			if (isset($url[0])) {
-				if (file_exists(APP . $url[0])) {
+			$segment = 0;
 
-					$this->module = $url[0];
-					unset($url[0]);
+			if (isset($url[$segment])) {
+				if (file_exists(APP . $url[$segment])) {
+
+					$this->module = $url[$segment];
+					unset($url[$segment]);
+
+					$segment++;
 
 				}
 			}
 
-			$segment = 1;
-			$this->controller = $this->module;
+			if (empty($this->controller)) {
+				$this->controller = $this->module;
+			}
 
 			if (isset($url[$segment])) {
 				
@@ -62,6 +74,10 @@
 			$this->params = $url ? array_values($url) : [];
 
 			call_user_func_array([$this->controller, $this->method], $this->params);
+
+			if (empty(self::$qapuas)) {
+				self::$qapuas = $this;
+			}
 
 		}
 

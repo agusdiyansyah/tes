@@ -3,7 +3,7 @@
 	* 
 	Help
 	*/
-	class Help extends Controller
+	class Help extends Loader
 	{
 		public function index()
 		{

@@ -7,7 +7,7 @@
 	{
 		public function data()
 		{
-			return $this->get_row('kategori');
+			return $this->select()->from('kategori')->fetch();
 		}
 		public function coba()
 		{
