@@ -104,3 +104,34 @@ Untuk memparsing data dari model, dapat menggunakan contoh model sebelumnya deng
 semua hal tentang membaca
 semua hal tentang menulis
 ```
+<h2 class="function">Function</h2>
+Pembuatan function sama dengan pembuatan function biasa, untuk memanggil function dapat dengan menggunakan kode berikut
+```sh
+$this->fun("nama_function");
+nama_function();
+```
+<br><b>Function</b>
+```sh
+<?php  
+	function coba($a = '')
+	{
+		return "Berhasil ".$a;
+	}
+?>
+```
+<b>Controller</b>
+```sh
+<?php  
+	/**
+	CONTROLLER
+	*/
+	class Beranda extends Loader
+	{
+		function index()
+		{
+			$this->fun("coba");
+			echo coba("hehe");
+		}
+	}
+?>
+```
