@@ -6,15 +6,12 @@
 	class Loader extends App
 	{
 		static $loader;
-		public $c = 1;
 
 		public function __construct()
 		{
 			if (empty(self::$loader)) {
 				self::$loader = $this;
 			}
-			echo $this->c;
-			$this->c++;
 		}
 
 		/**
@@ -183,15 +180,23 @@
 
 		public function fun($fun = '')
 		{
-			if ( $fun != '' ) {
-				
-				echo "<b><i>Under Construction&nbsp&nbsp.__.&nbsp&nbsp</i></b>";
+
+			if ( !empty($fun) ) {
+
+				if ( file_exists(FUN . $fun . '.php') ) {
+					// echo "string";
+					require_once FUN . $fun . '.php';
+					return $fun;
+				} else {
+					echo "<b><i>404 Function&nbsp&nbsp.__.&nbsp&nbsp</i></b>";
+				}
 
 			} else {
 
 				echo "<b><i>404 Function&nbsp&nbsp.__.&nbsp&nbsp</i></b>";
 
 			}
+			return;
 		}
 		
 	}
