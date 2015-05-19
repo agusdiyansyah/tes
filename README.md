@@ -23,10 +23,13 @@
 	</ul>
 </p>
 <b id="app">app/</b>
+<hr>
 <p>
 	Folder <b>app/</b> digunakan untuk menampung semua <a href="#module">module</a> pada aplikasi web yang akan dibangun
 </p>
+<br>
 app/<b id="module">module/</b>
+<hr>
 <p>
 	folder <b>module/</b> digunakan untuk menampung <a href="#controller">controller/</a> , <a href="#model">model/</a> , <a href="#view">view/</a> 
 </p>
