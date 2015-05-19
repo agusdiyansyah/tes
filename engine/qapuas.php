@@ -21,9 +21,6 @@
 	*/
 	$conf["CORE"] = ["app","loader","model"];
 
-	// Load class
-	$conf["LIB"]  = [""];
-
 	// Load function
 	$conf["FUN"]  = [""];
 
