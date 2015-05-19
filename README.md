@@ -22,11 +22,11 @@
 	    <li><a href="#gudang">gudang/</a></li>
 	</ul>
 </p>
-<h2 id="app">app/</h2>
+<b id="app">app/</b>
 <p>
 	Folder <b>app/</b> digunakan untuk menampung semua <a href="#module">module</a> pada aplikasi web yang akan dibangun
 </p>
-<h2>app/module/</h2>
+app/<b id="module">module/</b>
 <p>
-	folder <b>module/</b> digunakan untuk menampung <a href="#controller">controller/</a> <a href="#model">model/</a> <a href="#view">view/</a> 
+	folder <b>module/</b> digunakan untuk menampung <a href="#controller">controller/</a> , <a href="#model">model/</a> , <a href="#view">view/</a> 
 </p>
