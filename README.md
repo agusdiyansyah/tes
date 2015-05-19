@@ -104,12 +104,13 @@ Untuk memparsing data dari model, dapat menggunakan contoh model sebelumnya deng
 semua hal tentang membaca
 semua hal tentang menulis
 ```
-<h2 class="function">Function</h2>
+<h2 id="function">Function</h2>
 Pembuatan function sama dengan pembuatan function biasa, untuk memanggil function dapat dengan menggunakan kode berikut
 ```sh
 $this->fun("nama_function");
 nama_function();
 ```
+Kode fungsi tambahan dapat disimpan didalam folder function yang terdapat pada folder engine
 <br><b>Function</b>
 ```sh
 <?php  
@@ -131,6 +132,44 @@ nama_function();
 		{
 			$this->fun("coba");
 			echo coba("hehe");
+		}
+	}
+?>
+```
+<h2 id="library">Library</h2>
+untuk membuat librari juga tidak berbeda dengan embuat class seperti biasa pada class php, berikut cara yang digunkaan untuk memanggil libray
+```sh
+$this->lib("nama_library")->function();
+```
+library tambahan dapat disimpan didalam folder library yang terdapat didalam folder engine <br>
+<b>Contoh Library</b>
+```sh
+<?php 
+
+/**
+* 
+Coba
+*/
+class Coba
+{
+	function tes($a = "")
+	{
+		return "berhasil ".$a;
+	}
+}
+?>
+```
+<b>Controller</b>
+```sh
+<?php  
+	/**
+	CONTROLLER
+	*/
+	class Beranda extends Loader
+	{
+		function index()
+		{
+			echo $this->lib("coba")->tes("heheheh");
 		}
 	}
 ?>
