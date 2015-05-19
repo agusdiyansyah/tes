@@ -14,6 +14,11 @@
 			$this->view('hello/v_hello', $data);
 		}
 
+		function coba($a = '')
+		{
+			echo "string $a";
+		}
+
 		
 	}
 ?>

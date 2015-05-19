@@ -6,8 +6,7 @@
 	{
 		function index()
 		{
-			$this->view('beranda/beranda');
-			$a = $this->module('hello');
+			$this->view("beranda/beranda");
 		}
 	}
 ?>

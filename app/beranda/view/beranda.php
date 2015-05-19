@@ -7,11 +7,10 @@
 		<title>Title Page</title>
 
 		<!-- Bootstrap CSS -->
-		<link href="http://localhost/cdn/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="<?php echo AST ?>bootstrap.css" rel="stylesheet">
 	</head>
 	<body>
 		<h1 class="text-center">Hello World</h1>
-
 		<!-- jQuery -->
 		<script src="http://localhost/cdn/bootstrap/js/jquery.js"></script>
 		<script src="http://localhost/cdn/bootstrap/js/bootstrap.min.js"></script>
