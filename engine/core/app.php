@@ -28,6 +28,7 @@
 
 			$segment = 0;
 
+			// define module
 			if (isset($url[$segment])) {
 				if (file_exists(APP . $url[$segment])) {
 
@@ -39,10 +40,13 @@
 				}
 			}
 
+			// default controller name is name of module 
+			// if dev not setting specific controller on mudule
 			if (empty($this->controller)) {
 				$this->controller = $this->module;
 			}
 
+			// cek url segment to find the controller
 			if (isset($url[$segment])) {
 				
 				if (file_exists(APP . $this->module . '/controller/' . $url[$segment] . '.php')) {
@@ -56,10 +60,13 @@
 
 			}
 
+			// include controller
 			require_once APP . $this->module . '/controller/' . $this->controller . '.php';
 
+			// make object of controller
 			$this->controller = new $this->controller;
 
+			// find specific mwthod/function on controller
 			if (isset($url[$segment])) {
 				
 				if (method_exists($this->controller, $url[$segment])) {
@@ -71,6 +78,7 @@
 
 			}
 
+			// set param with other url segment value if still available
 			$this->params = $url ? array_values($url) : [];
 
 			call_user_func_array([$this->controller, $this->method], $this->params);
