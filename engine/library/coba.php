@@ -6,9 +6,8 @@ Coba
 */
 class Coba
 {
-	
-	function __construct()
+	function tes($a = "")
 	{
-		echo "hehe";
+		return "berhasil ".$a;
 	}
 }
