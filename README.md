@@ -3,7 +3,7 @@
 	<ul>
 	    <li><a href="#app">app/</a>
 			<ul>
-			    <li><a href="#module_name">module_name/</a>
+			    <li><a href="#module">module/</a>
 					<ul>
 					    <li><a href="#controller">controller/</a></li>
 					    <li><a href="#model">model/</a></li>
@@ -24,5 +24,9 @@
 </p>
 <h2 id="app">app/</h2>
 <p>
-	Folder <b>app/</b> adalah tempat menampung semua <a href="#module_name">module</a> pada aplikasi web yang akan dibangun
+	Folder <b>app/</b> digunakan untuk menampung semua <a href="#module">module</a> pada aplikasi web yang akan dibangun
+</p>
+<h2>app/module/</h2>
+<p>
+	folder <b>module/</b> digunakan untuk menampung <a href="#controller">controller/</a> <a href="#model">model/</a> <a href="#view">view/</a> 
 </p>
