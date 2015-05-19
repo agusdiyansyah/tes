@@ -14,7 +14,7 @@
 ```sh
 <?php  
 	/**
-	* 
+	CONTROLLER
 	*/
 	class Beranda extends Loader
 	{
@@ -25,8 +25,10 @@
 	}
 ?>
 ```
-<h2 id="controller">Model</h2>
-Class model
+<h2 id="model">Model</h2>
+<a href="https://bitbucket.org/getvivekv/php-mysqli-class">Active record mysqli class</a>
+<br>
+<b>Class model</b>
 ```sh
 <?php  
 	/**
@@ -41,11 +43,11 @@ Class model
 	}
 ?>
 ```
-Penggunaannya pada controller
+<b>Penggunaannya pada controller</b>
 ```sh
 <?php  
 	/**
-	* 
+	CONTROLLER
 	*/
 	class Beranda extends Loader
 	{
@@ -57,7 +59,7 @@ Penggunaannya pada controller
 	}
 ?>
 ```
-Result
+<b>Result</b>
 ```sh
 array (size=2)
   0 => 
@@ -70,4 +72,35 @@ array (size=2)
       'id_kategori' => string '2' (length=1)
       'kategori' => string 'menulis' (length=7)
       'deskripsi' => string 'semua hal tentang menulis' (length=25)
+```
+<h2 id="view">View</h2>
+Untuk memparsing data dari model, dapat menggunakan contoh model sebelumnya dengan menambahkan beberapa fungsi tambahan <br>
+<b>Class controller</b>
+```sh
+<?php  
+	/**
+	CONTROLLER
+	*/
+	class Beranda extends Loader
+	{
+		function index()
+		{
+			$data['kategori'] = $this->model("beranda/m_beranda")->get();
+			$this->view("beranda/v_beranda" , $data);
+		}
+	}
+?>
+```
+<b>View</b><br>
+```sh
+<?php  
+	foreach ($kategori as $key) {
+		echo $key["deskripsi"] . "<br>";
+	}
+?>
+```
+<b>Result</b>
+```sh
+semua hal tentang membaca
+semua hal tentang menulis
 ```
