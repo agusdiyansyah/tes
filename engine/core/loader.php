@@ -171,6 +171,7 @@
 			} else {
 				echo "<b><i>404 Library&nbsp&nbsp.__.&nbsp&nbsp</i></b>";
 			}
+			return $this;
 		}
 
 
