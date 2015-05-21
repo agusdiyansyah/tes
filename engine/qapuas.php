@@ -1,4 +1,5 @@
 <?php 
+	$start_time = microtime(TRUE);
 	define("APP", "../app/");
 	define("AST", "gudang/");
 	define("CORE", "core/");
@@ -8,7 +9,7 @@
 	/**
 	AUTOLOAD
 	*/
-
+	
 	/*
 	MUST BE LOADED
 	---------------------------
@@ -33,3 +34,7 @@
 	}
 
 	$app = new App;
+
+	$end_time = microtime(TRUE);
+	$report = $end_time - $start_time;
+	echo "<br>PHP Execution : " . round($report,4);

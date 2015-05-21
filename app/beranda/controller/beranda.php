@@ -6,9 +6,10 @@
 	{
 		function index()
 		{
-			$this->view("beranda/beranda");
-			$this->fun('coba');
+			$this->fun('coba/coba');
 			echo coba("function coba");
+			$this->view("beranda/beranda");
+			require APP . 'beranda/view/beranda.php';
 		}
 	}
 ?>
