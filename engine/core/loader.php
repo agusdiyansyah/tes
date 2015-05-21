@@ -21,7 +21,7 @@
 		public function model($model)
 		{
 
-			$url 	= explode('/', $model);
+			$url 	= explode('/', $model, 2);
 
 			if (isset($url[1])) {
 				
@@ -53,10 +53,7 @@
 		{
 			
 			if (!empty($view) && isset($vars) ) {
-				$url 	= explode('/', $view, 2);
-				$module = $this->module;
-				$view 	= $url[0];
-				
+				$url 	= explode('/', $view, 2);				
 				// pengolahan var data
 				extract($vars);
 				unset($vars);
@@ -176,7 +173,7 @@
 
 
 		/**
-		FUNCTION/HELPER
+		FUNCTION
 		*/
 
 		public function fun($fun = '')
@@ -184,12 +181,16 @@
 
 			if ( !empty($fun) ) {
 
-				if ( file_exists(FUN . $fun . '.php') ) {
-					// echo "string";
-					require_once FUN . $fun . '.php';
-					return $fun;
-				} else {
-					echo "<b><i>404 Function&nbsp&nbsp.__.&nbsp&nbsp</i></b>";
+				if (is_string($fun)) {
+					if ( file_exists(FUN . $fun . '.php') ) {
+
+						require_once FUN . $fun . '.php';
+
+					} else {
+						echo "<b><i>404 Function&nbsp&nbsp.__.&nbsp&nbsp</i></b>";
+					}
+				} elseif (is_array($fun)) {
+					echo "<b><i>Called Function with array is underconstruction&nbsp&nbsp.__.&nbsp&nbsp</i></b>";
 				}
 
 			} else {
@@ -197,7 +198,6 @@
 				echo "<b><i>404 Function&nbsp&nbsp.__.&nbsp&nbsp</i></b>";
 
 			}
-			return;
 		}
 		
 	}
