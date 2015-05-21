@@ -10,8 +10,18 @@
  * @version   1.4.6
  **/
 // namespace db;
-class Model extends App
+class Model
 {
+    /**
+     * Database setting
+     */
+    private $host        = "localhost";
+    private $username    = "root";
+    private $password    = "";
+    private $db          = "portal";
+    private $charset     = "utf8";
+    private $port        = NULL;
+
 
     protected static $_instance;
 
@@ -32,19 +42,19 @@ class Model extends App
     /**
      * Limit and offset
      */
-    private $_limit;
-    private $_offset;
-    private $_result;
     var $error = '';
     var $debug = TRUE;
     var $die_on_error = TRUE;
+    private $_limit;
+    private $_offset;
+    private $_result;
     // Script execution will stop if set to TRUE. Default is TRUE ;
     private $_last_query = '';
     private $_executed = FALSE;
     private $_delete = FALSE;
     private $_distinct = FALSE;
-    protected $table_prefix;
     private $_dryrun = FALSE;
+    protected $table_prefix;
 
     /**
      * The table name used as FROM
