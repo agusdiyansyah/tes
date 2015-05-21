@@ -13,13 +13,6 @@
 		public $method		= "index";
 		public $params 		= [];
 
-		public $host 		= "localhost";
-		public $username 	= "root";
-		public $password	= "";
-		public $db 			= "portal";
-		public $charset		= "utf8";
-		public $port 		= NULL;
-
 		function __construct()
 		{
 
@@ -83,9 +76,10 @@
 
 			call_user_func_array([$this->controller, $this->method], $this->params);
 
-			if (empty(self::$qapuas)) {
-				self::$qapuas = $this;
-			}
+			unset($this->module);
+			unset($this->controller);
+			unset($this->method);
+			$this->params = [];
 
 		}
 
