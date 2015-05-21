@@ -7,7 +7,8 @@
 		function index()
 		{
 			$this->view("beranda/beranda");
-			echo $this->lib('coba')->tes("alsdjakl djaskdj");
+			$this->fun('coba');
+			echo coba("function coba");
 		}
 	}
 ?>
